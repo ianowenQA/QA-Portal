@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface QaUserRepository extends JpaRepository<QaUserEntity, Integer> {
-
     Optional<QaUserEntity> findByUserName(String userName);
 }

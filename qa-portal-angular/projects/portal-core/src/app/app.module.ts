@@ -1,20 +1,23 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {PortalHeaderComponent} from './portal-header/portal-header.component';
-import {QaCommonModule} from '../../../qa-common/src/app/app.module';
-import {MenuService} from './_common/services/menu-service';
-import {PortalSideMenuComponent} from './portal-side-menu/portal-side-menu.component';
-import {PortalSideMenuContentComponent} from './portal-side-menu/portal-side-menu-content/portal-side-menu-content.component';
-import {ApplicationSelectionService} from './_common/services/application-selection.service';
-import {PortalFooterComponent} from './portal-footer/portal-footer.component';
-import {PortalHomeSharedModule} from '../../../portal-home/src/app/app.module';
-import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
-import {QaErrorHandlerService} from './_common/services/qa-error-handler.service';
-import {QaErrorSharedModule} from '../../../qa-error-app/src/app/app.module';
-import {initializer} from '../../../../app-init';
-import {QaToastrService} from './_common/services/qa-toastr.service';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { PortalHeaderComponent } from './portal-header/portal-header.component';
+import { QaCommonModule } from '../../../qa-common/src/app/qa-common.module';
+import { PortalSideMenuComponent } from './portal-side-menu/portal-side-menu.component';
+import { PortalSideMenuContentComponent } from './portal-side-menu/portal-side-menu-content/portal-side-menu-content.component';
+import { PortalFooterComponent } from './portal-footer/portal-footer.component';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { QaErrorHandlerService } from './_common/services/qa-error-handler.service';
+import { initializer } from '../../../../app-init';
+import { QaToastrService } from './_common/services/qa-toastr.service';
+import { HeaderLinkComponent } from './header-link/header-link.component';
+import { MAT_DATE_LOCALE } from '@angular/material';
+import { PortalApplicationHomeComponent } from './portal-application-home/portal-application-home.component';
+import { ApplicationService } from './_common/services/application.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PortalHomeComponent } from './portal-home/portal-home.component';
 
 @NgModule({
   declarations: [
@@ -22,19 +25,21 @@ import {QaToastrService} from './_common/services/qa-toastr.service';
     PortalHeaderComponent,
     PortalSideMenuComponent,
     PortalSideMenuContentComponent,
-    PortalFooterComponent
+    PortalFooterComponent,
+    HeaderLinkComponent,
+    PortalApplicationHomeComponent,
+    PortalHomeComponent,
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     QaCommonModule,
     AppRoutingModule,
-    PortalHomeSharedModule.forRoot(),
-    QaErrorSharedModule.forRoot(),
     HttpClientModule,
     KeycloakAngularModule
   ],
   providers: [
-    MenuService,
-    ApplicationSelectionService,
+    ApplicationService,
     QaErrorHandlerService,
     QaToastrService,
     {
@@ -42,9 +47,12 @@ import {QaToastrService} from './_common/services/qa-toastr.service';
       useFactory: initializer,
       multi: true,
       deps: [KeycloakService]
+    },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'en-GB'
     }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
