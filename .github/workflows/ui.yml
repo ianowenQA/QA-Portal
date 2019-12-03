@@ -1,4 +1,4 @@
-name: QA Portal Angular Testing
+name: QA Portal Angular
 
 on:
   push:
