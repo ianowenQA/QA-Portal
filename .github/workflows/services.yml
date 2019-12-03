@@ -1,6 +1,9 @@
 name: QA Portal Services
 
-on: [push]
+on:
+  push:
+    branches: 
+      - 'feature/**'
 
 jobs:
   build:
