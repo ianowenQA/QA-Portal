@@ -17,10 +17,14 @@ jobs:
         with:
           node-version: 12.8
       - name: Install dependencies
+        working-directory: ./qa-portal-angular
         run: npm install
-      - name: Lint
-        run: npm run lint
+#       - name: Lint
+#         working-directory: ./qa-portal-angular
+#         run: npm run lint
       - name: Build
+        working-directory: ./qa-portal-angular
         run: npm run build -- --prod
-      - name: Test
-        run: npm test -- --configuration=ci
+#       - name: Test
+#         working-directory: ./qa-portal-angular
+#         run: npm test -- --configuration=ci
