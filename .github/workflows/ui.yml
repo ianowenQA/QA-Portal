@@ -19,12 +19,6 @@ jobs:
       - name: Install dependencies
         working-directory: ./qa-portal-angular
         run: npm install
-#       - name: Lint
-#         working-directory: ./qa-portal-angular
-#         run: npm run lint
       - name: Build
         working-directory: ./qa-portal-angular
         run: npm run build -- --prod
-#       - name: Test
-#         working-directory: ./qa-portal-angular
-#         run: npm test -- --configuration=ci
