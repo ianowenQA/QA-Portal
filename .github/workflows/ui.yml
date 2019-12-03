@@ -3,8 +3,7 @@ name: QA Portal Angular
 on:
   push:
     branches: 
-      - feature/github-actions
-      - master
+      - 'feature/**'
 
 jobs:
   build:
